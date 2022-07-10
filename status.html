@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="" />
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <!--[if lt IE 7]>
+      <p class="browsehappy">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="#">upgrade your browser</a> to improve your experience.
+      </p>
+    <![endif]-->
+
+    <div class="container">
+      <div class="row">
+        <div class="coloumn">
+          <form method="post">
+            <table>
+              <tr>
+                <td>
+                  <label>ID</label>
+                </td>
+                <td>
+                  <input type="text" class="id" name="id" id="id" />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <button id="check">check status</button>
+                </td>
+                <td>
+                  <button type="reset">Reset</button>
+                </td>
+              </tr>
+            </table>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>STATUS</th>
+        <th>Desciption</th>
+      </tr>
+      <tr id="append"></tr>
+    </table>
+
+    <script src="" async defer></script>
+
+    <script>
+      //scripting starts here
+      //   document.getElementById("check").addEventListener("click", function (e) {
+      //     e.preventDefault();
+      //     var name = document.getElementById("name").value;
+      //     var email = document.getElementById("email").value;
+      //     var phone = document.getElementById("phone").value;
+      //     var password = document.getElementById("pwd").value;
+      //   });
+
+      $(document).ready(function () {
+        $("#check").on("click", function (e) {
+          e.preventDefault();
+
+          var id = $("#id").val();
+
+          $.ajax({
+            url: "status.php",
+            type: "POST",
+
+            data: { id: id },
+
+            success: function (response) {
+              if (response == 1) {
+                alert("data not found");
+              } else {
+                $("#append").html(response);
+              }
+            },
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
